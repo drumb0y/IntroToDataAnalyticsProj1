@@ -1,0 +1,53 @@
+---
+title: "Proj1"
+author: "Aidan B"
+date: "2025-09-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+import libraries
+
+```{r}
+library(here)
+library(ggplot2)
+library(dplyr)
+library(maps)
+```
+
+Get all datasets
+
+```{r}
+catOwnership <- read.csv(here("Data", "CatOwnershipRate2016.csv"))
+                          
+dogOwnership <- read.csv(here("Data", "DogOwnershipRate2016.csv"))
+                          
+petOwnership <- read.csv(here("Data", "PetOwnershipRate.csv"))
+
+state_map <- map_data("state")
+
+
+
+head(catOwnership)
+head(dogOwnership)
+head(petOwnership)
+head(state_map)
+
+
+```
+
+Decapitalize state names and change "region" to "Region" in the states dataset
+
+```{r}
+
+
+
+
+```
+
+
+
+
