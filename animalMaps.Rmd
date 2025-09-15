@@ -39,15 +39,62 @@ head(state_map)
 
 ```
 
-Decapitalize state names and change "region" to "Region" in the states dataset
+Rename some other columns to make the data easy to distinguish and work with
 
 ```{r}
 
+colnames(state_map) <- c("long", "lat", "group", "order", "region", "subregion")
 
+head(state_map)
+
+
+colnames(catOwnership) <- c("cat_ranking", "region", "cat_rate")
+head(catOwnership)
+
+
+colnames(dogOwnership) <- c("dog_ranking", "region", "dog_rate")
+head(dogOwnership)
+
+
+colnames(petOwnership) <- c("pet_ranking", "region", "pet_rate")
+head(petOwnership)
 
 
 ```
 
+Decapitalize state names in pet maps
 
+```{r}
+catOwnership$region <- tolower(catOwnership$region)
+head(catOwnership)
+
+dogOwnership$region <- tolower(dogOwnership$region)
+head(dogOwnership)
+
+petOwnership$region <- tolower(petOwnership$region)
+head(petOwnership)
+```
+
+Join datasets together
+
+```{r}
+state_map <- left_join(state_map, catOwnership, by = "region")
+
+state_map <- left_join(state_map, dogOwnership, by = "region")
+
+state_map <- left_join(state_map, petOwnership, by = "region")
+
+head(state_map)
+
+```
+
+USe ggplot to show different rates across the USA
+
+```{r}
+discr_graph1 <- ggplot(state_map, aes(x = long, y = lat, group = group)) + geom_polygon(aes(fill = state_map$pet_rate), color = "black") + scale_fill_viridis_c()
+
+
+discr_graph1
+```
 
 
