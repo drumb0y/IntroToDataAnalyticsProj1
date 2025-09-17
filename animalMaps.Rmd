@@ -90,11 +90,46 @@ head(state_map)
 
 USe ggplot to show different rates across the USA
 
+First for pets in general
+
 ```{r}
-discr_graph1 <- ggplot(state_map, aes(x = long, y = lat, group = group)) + geom_polygon(aes(fill = state_map$pet_rate), color = "black") + scale_fill_viridis_c()
+discr_graph1 <- ggplot(state_map, aes(x = long, y = lat, group = group)) + geom_polygon(aes(fill = pet_rate), color = "black") + scale_fill_viridis_c() + labs(x = "longitude", y = "latitude", title = "Percentage of families with pets per state", fill = "% Rate")
 
 
 discr_graph1
+```
+
+then for cats
+
+```{r}
+discr_graph1 <- ggplot(state_map, aes(x = long, y = lat, group = group)) + geom_polygon(aes(fill = cat_rate), color = "pink") + scale_fill_viridis_c() + labs(x = "longitude", y = "latitude", title = "Percentage of families with cats per state", fill = "% Rate")
+
+
+
+discr_graph1
+```
+
+
+
+First for dogs in general
+
+```{r}
+discr_graph1 <- ggplot(state_map, aes(x = long, y = lat, group = group)) + geom_polygon(aes(fill = dog_rate), color = "blue") + scale_fill_viridis_c() + labs(x = "longitude", y = "latitude", title = "Percentage of families with dogs per state", fill = "% Rate")
+
+
+
+discr_graph1
+
+show(state_map)
+```
+
+Order the map to put the most dog friendly state at the top
+```{r}
+sorted <- arrange(state_map,dog_ranking)
+
+sorted
+  
+  
 ```
 
 
